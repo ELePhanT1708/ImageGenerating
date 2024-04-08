@@ -24,7 +24,7 @@ def create_gradient(width, height, color1, color2):
 
 
 def create_card_with_one_image(book_image_path: str, main_title: str, type_of_book: str, class_info: str,
-                               age_or_class: str, output_path: str):
+                               age_or_class: str, output_path: str, quantity: int = 0):
     #  BACKGROUND
     width = 1200
     height = 1600
@@ -75,18 +75,28 @@ def create_card_with_one_image(book_image_path: str, main_title: str, type_of_bo
         size=55)
 
     draw = ImageDraw.Draw(cropped_image)
-    # main title
-    draw.multiline_text((450, 100), f"{main_title}", font=font_main_title, align='center', anchor='mm')
-    # rectangle for type of book
-    draw.rounded_rectangle((40, 220, 860, 320), radius=20, fill=fill1)
-    draw.multiline_text((450, 270), f"{type_of_book}", font=font_type_of_book, align='center', anchor='mm')
-    # class info
-    draw.text((800, 400), f"{class_info}", font=font_class, align='center', anchor='mm')
-    draw.text((800, 500), f"{age_or_class}", font=font_class_text, align='center', anchor='mm')
 
+    # main title
+    draw.multiline_text((450, 70), f"{main_title}", font=font_main_title, align='center', anchor='mm')
+    # rectangle for type of book
+    rectangle_height_1 = 130
+    rectangle_height_2 = 230
+    draw.rounded_rectangle((40, rectangle_height_1, 860, rectangle_height_2), radius=20, fill=fill1)
+    draw.multiline_text((450, (rectangle_height_1 + rectangle_height_2)//2), f"{type_of_book}", font=font_type_of_book,
+                        align='center', anchor='mm')
+    ## Komplekt
+    if quantity:
+        draw.rounded_rectangle((200, rectangle_height_2 + 20, 700, rectangle_height_2 + 100), radius=20, fill=fill2)
+        draw.multiline_text((450, rectangle_height_2 + 60), f"{int(quantity)} КОМПЛЕКТОВ",
+                            font=font_type_of_book,
+                            align='center', anchor='mm')
+    # class info
+    class_height = 350
+    draw.text((800, class_height), f"{class_info}", font=font_class, align='center', anchor='mm')
+    draw.text((800, class_height + 100), f"{age_or_class}", font=font_class_text, align='center', anchor='mm')
     # icon
     # icon_image = Image.open('/Users/rrkhikmatullin/Desktop/Снимок экрана 2024-04-06 в 16.14.38.png')
     # print(icon_image.size)
     # cropped_image.paste(icon_image, (0, 0))
 
-    cropped_image.save(f"{output_path}.png")
+    cropped_image.save(f"finish/1/{output_path}.png")

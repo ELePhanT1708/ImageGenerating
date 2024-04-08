@@ -1,1 +1,9 @@
 .idea
+/src
+/finish
+*.png
+*.jpg
+*.xlsx
+*.pyc
+*_image.cpython-311.pyc
+*.iml

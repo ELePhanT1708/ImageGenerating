@@ -96,7 +96,7 @@ def create_card_with_two_image(book_image_path_1: str, book_image_path_2: str, m
     draw.rounded_rectangle((40, rectangle_height_1, 860, rectangle_height_2), radius=20, fill=fill1)
     draw.multiline_text((450, (rectangle_height_1 + rectangle_height_2)//2), f"{type_of_book}", font=font_type_of_book,
                         align='center', anchor='mm')
-
+    print(quantity)
     ## Komplekt
     if quantity:
         draw.rounded_rectangle((200, rectangle_height_2 + 20, 700, rectangle_height_2 + 100), radius=20, fill=fill2)
@@ -113,7 +113,7 @@ def create_card_with_two_image(book_image_path_1: str, book_image_path_2: str, m
     # print(icon_image.size)
     # cropped_image.paste(icon_image, (0, 0))
 
-    cropped_image.save(f"{output_path}.png")
+    cropped_image.save(f"finish/2/{output_path}.png")
 
 
 if __name__ == '__main__':
